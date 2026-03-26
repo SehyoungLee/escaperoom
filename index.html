@@ -46,19 +46,44 @@
     cursor: pointer; 
     font-weight: bold; 
     transition: 0.3s;
+    margin-top: 10px;
   }
   button:hover { 
     background-color: #00cc00; 
     box-shadow: 0 0 10px #00ff00;
   }
   ul { text-align: left; line-height: 1.8; }
+  .result-box {
+    background-color: #000;
+    border: 1px dashed #00ff00;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  .result-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    line-height: 2;
+  }
 </style>
 </head>
 <body>
   <h1>🔒 앵두자두 박사의 비밀 금고</h1>
   <p>실험 노트를 해독하여 4개의 자물쇠를 열고 신약 성분을 확보하라!</p>
 
-  <div id="mission1" class="mission active">
+  <div id="intro" class="mission active">
+    <h2>✉️ 앵두자두 박사의 비밀 편지</h2>
+    <p style="text-align: left; line-height: 1.6; font-size: 15px;">
+      안녕, 미래의 과학자들! 나는 <b>앵두자두 박사</b>라네.<br><br>
+      평생을 바쳐 불치병을 치료할 전설의 신약 원료, <b>'순도 100% 질산 칼륨'</b>을 분리해 내는 비법을 마침내 알아냈지!<br><br>
+      하지만 악당들이 이 비법을 노리고 있어서, 내 실험 노트의 데이터를 암호로 만들어 이 금고에 숨겨두었네.<br><br>
+      자네들이 배운 <b>'재결정'</b>과 <b>'용해도 곡선'</b> 지식이라면 이 4개의 자물쇠를 충분히 열 수 있을 거야. 부디 나 대신 순수한 질산 칼륨을 얻어주게! 행운을 비네!
+    </p>
+    <button onclick="startGame()">▶ 금고 열기 (게임 시작)</button>
+  </div>
+
+  <div id="mission1" class="mission">
     <h2>[미션 1] 개념의 방</h2>
     <p>온도에 따른 용해도 차가 큰 물질과 작은 물질이 섞인 혼합물을 <b>[ A ]</b>에 넣고 가열하여 모두 녹인 후 서서히 <b>[ B ]</b>하면 온도에 따른 용해도 차가 <b>[ C ]</b> 물질이 결정으로 석출되어 분리된다.</p>
     <p style="color: #aaa; font-size: 14px;">힌트: A(2글자) + B(2글자) + C(1글자)를 띄어쓰기 없이 입력</p>
@@ -70,9 +95,7 @@
   <div id="mission2" class="mission">
     <h2>[미션 2] 데이터의 방</h2>
     <p>0℃의 물 100g에 최대한 녹을 수 있는 질산 칼륨과 염화 나트륨의 질량(g)을 순서대로 나열하시오.</p>
-    
     <img src="graph.png" alt="용해도 곡선 그래프" style="width: 100%; max-width: 400px; border: 2px solid #00ff00; border-radius: 5px; margin: 15px 0;">
-    
     <p style="color: #aaa; font-size: 14px;">힌트: 질산 칼륨 두 자리 + 염화 나트륨 두 자리 (총 4자리 숫자)</p>
     <input type="text" id="answer2" placeholder="예: 1234">
     <br>
@@ -82,10 +105,8 @@
   <div id="mission3" class="mission">
     <h2>[미션 3] 계산의 방</h2>
     <p>물 10g에 질산 칼륨 10g과 염화 나트륨 2g을 모두 녹인 후 얼음이 든 비커에 넣어 차갑게 식힌 다음, 이 용액을 거름장치로 걸렀다. 거름장치 위에 석출된 고체 물질과 그 물질의 질량은?</p>
-    
     <img src="graph.png" alt="용해도 곡선 그래프" style="width: 100%; max-width: 400px; border: 2px solid #00ff00; border-radius: 5px; margin: 15px 0;">
-
-    <p style="color: #aaa; font-size: 14px;">힌트: 석출된 고체 물질 이름의 앞 두글자 + 석출된 고체 물질의 질량을 소수점 제외하고 숫자 세 자리로 입력 (예: 석출된 물질이 질산 칼륨이고 그 질량이 1.2g이면 -> 질산012)</p>
+    <p style="color: #aaa; font-size: 14px;">힌트: 석출된 물질 앞 두글자 + 질량을 소수점 제외 세 자리로 입력 (예: 질산012)</p>
     <input type="text" id="answer3" placeholder="예: 질산012">
     <br>
     <button onclick="checkMission3()">자물쇠 열기</button>
@@ -106,18 +127,42 @@
   </div>
 
   <div id="success" class="mission">
-    <h2>🎉 탈출 성공! 🎉</h2>
-    <p>순수한 질산 칼륨 추출 비법을 획득했습니다!</p>
-    <p style="font-size: 24px; color: yellow;">⭐ 선생님께 이 화면을 보여주세요! ⭐</p>
+    <h2 style="font-size: 32px; color: yellow; text-shadow: 0 0 10px red;">MISSION SUCCESSFUL!</h2>
+    <p>순수한 질산 칼륨 추출 비법 획득 완료!</p>
+    
+    <div class="result-box">
+      <h3 style="margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px;">📊 요원 탈출 기록</h3>
+      <p style="font-size: 20px; color: yellow; font-weight: bold;">⏱ 총 소요 시간: <span id="timeRecord">0분 0초</span></p>
+      <ul class="result-list">
+        <li>[미션 1] 개념의 방 오답: <span id="fail1" style="color: red; font-weight: bold;">0</span> 회</li>
+        <li>[미션 2] 데이터의 방 오답: <span id="fail2" style="color: red; font-weight: bold;">0</span> 회</li>
+        <li>[미션 3] 계산의 방 오답: <span id="fail3" style="color: red; font-weight: bold;">0</span> 회</li>
+        <li>[미션 4] 진실의 방 오답: <span id="fail4" style="color: red; font-weight: bold;">0</span> 회</li>
+      </ul>
+    </div>
+
+    <p style="font-size: 20px; color: #00ff00; margin-top: 30px; border: 2px dashed #00ff00; padding: 10px;">⭐ 선생님께 이 화면을 확인받으세요! ⭐</p>
   </div>
 
   <script>
+    // 시간 측정과 오답 횟수를 저장할 변수들
+    let startTime, endTime;
+    let failCounts = [0, 0, 0, 0, 0]; // 인덱스 1~4 사용 (미션 1~4)
+
+    // 게임 시작 시 타이머 작동
+    function startGame() {
+      startTime = new Date(); // 시작 시간 기록
+      document.getElementById('intro').classList.remove('active');
+      document.getElementById('mission1').classList.add('active');
+    }
+
     function checkMission1() {
-      let ans = document.getElementById('answer1').value.replace(/\s/g, ''); // 공백 제거
+      let ans = document.getElementById('answer1').value.replace(/\s/g, ''); 
       if(ans === '용매냉각큰') {
         document.getElementById('mission1').classList.remove('active');
         document.getElementById('mission2').classList.add('active');
       } else {
+        failCounts[1]++; // 오답 횟수 1 증가
         alert('삐빅! 물을 포함하여 고체 물질을 녹이는 물질을 포괄적으로 뭐라고 할까요? 학습지를 다시 확인하세요.');
       }
     }
@@ -128,6 +173,7 @@
         document.getElementById('mission2').classList.remove('active');
         document.getElementById('mission3').classList.add('active');
       } else {
+        failCounts[2]++;
         alert('삐빅! 그래프를 다시 정확하게 읽어보세요.');
       }
     }
@@ -138,6 +184,7 @@
         document.getElementById('mission3').classList.remove('active');
         document.getElementById('mission4').classList.add('active');
       } else {
+        failCounts[3]++;
         alert('삐빅! 온도에 따른 용해도 차가 어떠한 물질이 석출될까요? 그리고 물이 10g일 때 용해도는 어떻게 변할까요? 다시 생각해보세요.');
       }
     }
@@ -145,11 +192,31 @@
     function checkMission4() {
       let ans = document.getElementById('answer4').value.replace(/\s/g, '');
       if(ans === '0101') {
+        endTime = new Date(); // 종료 시간 기록
+        calculateResult(); // 결과 계산 및 화면 표시 함수 호출
+
         document.getElementById('mission4').classList.remove('active');
         document.getElementById('success').classList.add('active');
       } else {
+        failCounts[4]++;
         alert('삐빅! 개념을 정확히 이해했는지 다시 한번 확인하세요.');
       }
+    }
+
+    // 최종 결과 계산 및 화면에 뿌려주는 함수
+    function calculateResult() {
+      // 시간 계산
+      let timeDiff = endTime - startTime; // 밀리초(ms) 단위
+      let seconds = Math.floor(timeDiff / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let remainingSeconds = seconds % 60;
+      
+      // 화면에 데이터 입력
+      document.getElementById('timeRecord').innerText = minutes + "분 " + remainingSeconds + "초";
+      document.getElementById('fail1').innerText = failCounts[1];
+      document.getElementById('fail2').innerText = failCounts[2];
+      document.getElementById('fail3').innerText = failCounts[3];
+      document.getElementById('fail4').innerText = failCounts[4];
     }
   </script>
 </body>
