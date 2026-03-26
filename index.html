@@ -66,12 +66,12 @@
     text-align: center;
     line-height: 2;
   }
-  /* 👇 고양이 사진 스타일 수정: float 속성으로 글자가 자연스럽게 감싸도록 변경 👇 */
+  /* 고양이 사진 스타일: float 속성으로 글자가 자연스럽게 감싸도록 설정 */
   .cat-photo {
-    max-width: 140px; /* 크기 유지 */
+    max-width: 140px; 
     height: auto;
-    float: right; /* 사진을 오른쪽으로 띄움 (핵심!) */
-    margin: 0 0 10px 15px; /* 사진 아래와 왼쪽에만 살짝 여백 주기 */
+    float: right; 
+    margin: 0 0 10px 15px; 
     border: none;
     border-radius: 0;
     box-shadow: none;
@@ -124,7 +124,7 @@
     <h2>[미션 3] 계산의 방</h2>
     <p>물 10g에 질산 칼륨 10g과 염화 나트륨 2g을 모두 녹인 후 얼음이 든 비커에 넣어 차갑게 식힌 다음, 이 용액을 거름장치로 걸렀다. 거름장치 위에 석출된 고체 물질과 그 물질의 질량은?</p>
     <img src="graph.png" alt="용해도 곡선 그래프" style="width: 100%; max-width: 400px; border: 2px solid #00ff00; border-radius: 5px; margin: 15px 0;">
-    <p style="color: #aaa; font-size: 14px;">힌트: 석출된 물질 앞 두글자 + 질량을 소수점 제외 세 자리로 입력 (예: 질산012)</p>
+    <p style="color: #aaa; font-size: 14px;">힌트: 석출된 물질 앞 두글자 + 질량을 소수점 제외 세 자리로 입력 (예: 질산 칼륨이 석출되었고 그 질량이 1.2g이라면 질산012)</p>
     <input type="text" id="answer3" placeholder="예: 질산012">
     <br>
     <button onclick="checkMission3()">자물쇠 열기</button>
@@ -132,12 +132,15 @@
 
   <div id="mission4" class="mission">
     <h2>[미션 4] 진실의 방</h2>
-    <p>다음 4개의 문장을 읽고, 진실(O)이면 숫자 1, 거짓(X)이면 숫자 0을 순서대로 조합하시오.</p>
+    <p>그림은 불순물이 섞인 고체 혼합물에서 순수한 고체를 얻는 과정을 나타낸 것이다. 아래 4개의 문장을 읽고, 진실(O)이면 숫자 1, 거짓(X)이면 숫자 0을 순서대로 조합하시오.</p>
+
+    <img src="graph2.png" alt="미션 4 참고 그래프" style="width: 100%; max-width: 400px; border: 2px solid #00ff00; border-radius: 5px; margin: 15px 0;">
+
     <ul>
       <li>1. 밀도 차를 이용한 분리 방법이다.</li>
       <li>2. 고체 혼합물이 모두 물에 녹을 때 사용할 수 있다.</li>
-      <li>3. 냉각 과정에서 용해도 차가 작은 물질이 석출된다.</li>
-      <li>4. 거름 장치에서 용해도 차가 큰 물질은 거름종이 위에 남는다.</li>
+      <li>3. (가)에서 용해도 차가 작은 물질이 석출된다.</li>
+      <li>4. (나)에서 온도에 따른 용해도 차가 큰 물질은 거름종이 위에 남는다.</li>
     </ul>
     <input type="text" id="answer4" placeholder="4자리 숫자 입력">
     <br>
