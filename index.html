@@ -66,6 +66,17 @@
     text-align: center;
     line-height: 2;
   }
+  /* 👇 고양이 사진 스타일 추가 👇 */
+  .cat-photo {
+    max-width: 250px; /* 고양이 사진 최대 너비 */
+    height: auto;
+    margin: 10px auto 20px auto; /* 중앙 정렬 및 아래쪽 여백 */
+    display: block;
+    /* 해커 테마에 맞춘 테두리와 그림자 효과 */
+    border: 3px solid #00ff00;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #00ff00;
+  }
 </style>
 </head>
 <body>
@@ -73,6 +84,8 @@
   <p>실험 노트를 해독하여 4개의 자물쇠를 열고 신약 성분을 확보하라!</p>
 
   <div id="intro" class="mission active">
+    <img src="cats.png" alt="귀여운 앵두와 자두" class="cat-photo">
+
     <h2>✉️ 앵두자두 박사의 비밀 편지</h2>
     <p style="text-align: left; line-height: 1.6; font-size: 15px;">
       안녕, 미래의 과학자들! 나는 <b>앵두자두 박사</b>라네.<br><br>
@@ -140,18 +153,15 @@
         <li>[미션 4] 진실의 방 오답: <span id="fail4" style="color: red; font-weight: bold;">0</span> 회</li>
       </ul>
     </div>
-
     <p style="font-size: 20px; color: #00ff00; margin-top: 30px; border: 2px dashed #00ff00; padding: 10px;">⭐ 선생님께 이 화면을 확인받으세요! ⭐</p>
   </div>
 
   <script>
-    // 시간 측정과 오답 횟수를 저장할 변수들
     let startTime, endTime;
-    let failCounts = [0, 0, 0, 0, 0]; // 인덱스 1~4 사용 (미션 1~4)
+    let failCounts = [0, 0, 0, 0, 0];
 
-    // 게임 시작 시 타이머 작동
     function startGame() {
-      startTime = new Date(); // 시작 시간 기록
+      startTime = new Date();
       document.getElementById('intro').classList.remove('active');
       document.getElementById('mission1').classList.add('active');
     }
@@ -162,7 +172,7 @@
         document.getElementById('mission1').classList.remove('active');
         document.getElementById('mission2').classList.add('active');
       } else {
-        failCounts[1]++; // 오답 횟수 1 증가
+        failCounts[1]++;
         alert('삐빅! 물을 포함하여 고체 물질을 녹이는 물질을 포괄적으로 뭐라고 할까요? 학습지를 다시 확인하세요.');
       }
     }
@@ -192,9 +202,8 @@
     function checkMission4() {
       let ans = document.getElementById('answer4').value.replace(/\s/g, '');
       if(ans === '0101') {
-        endTime = new Date(); // 종료 시간 기록
-        calculateResult(); // 결과 계산 및 화면 표시 함수 호출
-
+        endTime = new Date();
+        calculateResult();
         document.getElementById('mission4').classList.remove('active');
         document.getElementById('success').classList.add('active');
       } else {
@@ -203,15 +212,11 @@
       }
     }
 
-    // 최종 결과 계산 및 화면에 뿌려주는 함수
     function calculateResult() {
-      // 시간 계산
-      let timeDiff = endTime - startTime; // 밀리초(ms) 단위
+      let timeDiff = endTime - startTime;
       let seconds = Math.floor(timeDiff / 1000);
       let minutes = Math.floor(seconds / 60);
       let remainingSeconds = seconds % 60;
-      
-      // 화면에 데이터 입력
       document.getElementById('timeRecord').innerText = minutes + "분 " + remainingSeconds + "초";
       document.getElementById('fail1').innerText = failCounts[1];
       document.getElementById('fail2').innerText = failCounts[2];
