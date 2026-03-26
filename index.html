@@ -66,16 +66,21 @@
     text-align: center;
     line-height: 2;
   }
-  /* 👇 고양이 사진 스타일 추가 👇 */
+  /* 👇 고양이 사진 스타일 수정: float 속성으로 글자가 자연스럽게 감싸도록 변경 👇 */
   .cat-photo {
-    max-width: 250px; /* 고양이 사진 최대 너비 */
+    max-width: 140px; /* 크기 유지 */
     height: auto;
-    margin: 10px auto 20px auto; /* 중앙 정렬 및 아래쪽 여백 */
-    display: block;
-    /* 해커 테마에 맞춘 테두리와 그림자 효과 */
-    border: 3px solid #00ff00;
-    border-radius: 15px;
-    box-shadow: 0 0 10px #00ff00;
+    float: right; /* 사진을 오른쪽으로 띄움 (핵심!) */
+    margin: 0 0 10px 15px; /* 사진 아래와 왼쪽에만 살짝 여백 주기 */
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  /* 떠 있는 사진 레이아웃을 깔끔하게 정리해 주는 코드 */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
   }
 </style>
 </head>
@@ -83,17 +88,17 @@
   <h1>🔒 앵두자두 박사의 비밀 금고</h1>
   <p>실험 노트를 해독하여 4개의 자물쇠를 열고 신약 성분을 확보하라!</p>
 
-  <div id="intro" class="mission active">
+  <div id="intro" class="mission active clearfix">
     <img src="cats.png" alt="귀여운 앵두와 자두" class="cat-photo">
 
     <h2>✉️ 앵두자두 박사의 비밀 편지</h2>
-    <p style="text-align: left; line-height: 1.6; font-size: 15px;">
+    <p style="text-align: left; line-height: 1.6; font-size: 15px; margin-top: 10px;">
       안녕, 미래의 과학자들! 나는 <b>앵두자두 박사</b>라네.<br><br>
       평생을 바쳐 불치병을 치료할 전설의 신약 원료, <b>'순도 100% 질산 칼륨'</b>을 분리해 내는 비법을 마침내 알아냈지!<br><br>
       하지만 악당들이 이 비법을 노리고 있어서, 내 실험 노트의 데이터를 암호로 만들어 이 금고에 숨겨두었네.<br><br>
       자네들이 배운 <b>'재결정'</b>과 <b>'용해도 곡선'</b> 지식이라면 이 4개의 자물쇠를 충분히 열 수 있을 거야. 부디 나 대신 순수한 질산 칼륨을 얻어주게! 행운을 비네!
     </p>
-    <button onclick="startGame()">▶ 금고 열기 (게임 시작)</button>
+    <button onclick="startGame()" style="clear: both;">▶ 금고 열기 (게임 시작)</button>
   </div>
 
   <div id="mission1" class="mission">
